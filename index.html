@@ -22,6 +22,61 @@
       perspective: 1200px;
     }
 
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a2a44, #3b82f6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      animation: fadeOut 0.5s ease 4s forwards;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 8px solid #facc15;
+      border-top: 8px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: #ffffff;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      font-weight: 300;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    #main-content {
+      opacity: 0;
+      animation: fadeInContent 0.5s ease 4s forwards;
+    }
+
+    @keyframes fadeInContent {
+      to { opacity: 1; }
+    }
+
     header {
       background: linear-gradient(90deg, #1a2a44, #3b82f6);
       color: #ffffff;
@@ -111,6 +166,127 @@
 
     .menu-toggle:hover {
       transform: scale(1.1);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #facc15;
+      color: #1a2a44;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      background: #eab308;
+      transform: translateY(-5px);
+    }
+
+    .whatsapp-toggle {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: #25D366;
+      color: #ffffff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .whatsapp-menu {
+      position: fixed;
+      bottom: 150px;
+      right: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      width: 280px;
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    }
+
+    .whatsapp-menu.active {
+      display: flex;
+    }
+
+    .whatsapp-menu input, .whatsapp-menu textarea {
+      padding: 0.8rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      width: 100%;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .whatsapp-menu input:focus, .whatsapp-menu textarea:focus {
+      border-color: #25D366;
+      outline: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .whatsapp-menu textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .whatsapp-menu button {
+      padding: 0.8rem;
+      background: #25D366;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .whatsapp-menu button:hover {
+      background: #20b354;
+      transform: translateY(-2px);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero {
@@ -295,7 +471,7 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .academics-card:hover {
+    .academics-card hovered {
       transform: translateZ(25px) scale(1.03);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
@@ -680,6 +856,16 @@
     }
 
     @media (max-width: 768px) {
+      #loading-screen .loader {
+        width: 50px;
+        height: 50px;
+        border-width: 6px;
+      }
+
+      .loading-text {
+        font-size: 1.2rem;
+      }
+
       header {
         padding: 0.8rem 1.5rem;
       }
@@ -700,7 +886,7 @@
         display: none;
         flex-direction: column;
         width: 100%;
-        background: rgba(26, 42, 68, 0.95);
+        background: rgba(26, 40, 68, 0.95);
         position: absolute;
         top: 100%;
         left: 0;
@@ -777,6 +963,26 @@
         gap: 1rem;
       }
 
+      .scroll-top {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        bottom: 70px;
+      }
+
+      .whatsapp-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+        bottom: 120px;
+      }
+
+      .whatsapp-menu {
+        width: 240px;
+        padding: 1rem;
+        bottom: 180px;
+      }
+
       canvas {
         width: 90%;
         height: 50%;
@@ -784,6 +990,16 @@
     }
 
     @media (max-width: 480px) {
+      #loading-screen .loader {
+        width: 40px;
+        height: 40px;
+        border-width: 5px;
+      }
+
+      .loading-text {
+        font-size: 1rem;
+      }
+
       header {
         padding: 0.6rem 1rem;
       }
@@ -835,6 +1051,35 @@
         right: 10px;
       }
 
+      .scroll-top {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3rem;
+        bottom: 60px;
+      }
+
+      .whatsapp-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        bottom: 110px;
+      }
+
+      .whatsapp-menu {
+        width: 200px;
+        padding: 0.8rem;
+        bottom: 160px;
+      }
+
+      .whatsapp-menu input, .whatsapp-menu textarea {
+        font-size: 0.8rem;
+      }
+
+      .whatsapp-menu button {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+      }
+
       canvas {
         width: 100%;
         height: 40%;
@@ -843,158 +1088,182 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="IMG/LOGO.jpeg" alt="SSAC Logo">
-      
-    </div>
-    <div class="menu-toggle" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </div>
-    <nav>
-      <a href="#hero" aria-label="Home">Home</a>
-      <a href="#about" aria-label="About">About</a>
-      <a href="#academics" aria-label="Academics">Academics</a>
-      <a href="#faculty" aria-label="Faculty">Faculty</a>
-      <a href="#gallery" aria-label="Gallery">Gallery</a>
-      <a href="#admissions" aria-label="Admissions">Admissions</a>
-      <a href="#contact" aria-label="Contact">Contact</a>
-    </nav>
-  </header>
+  <div id="loading-screen">
+    <div class="loader"></div>
+    <div class="loading-text">Welcome to SSAC</div>
+  </div>
 
-  <section class="hero" id="hero">
-    <canvas id="hero-canvas"></canvas>
-    <video autoplay muted loop>
-      <source src="https://cdn.pixabay.com/video/2023/06/25/169014-838861374_tiny.mp4" type="video/mp4">
-    </video>
-    <div class="hero-content">
-      <h1>Shaping Minds, Building Futures</h1>
-      <p>Discover a legacy of academic excellence at Sullamussalam Arabic College, Arecode, since 1944.</p>
-      <button class="cta-button">Explore Programs</button>
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <canvas id="about-canvas"></canvas>
-    <h2>About Us</h2>
-    <p>Since its inception in 1944, Sullamussalam Arabic College has been a beacon of academic excellence in Malabar. With a rich legacy spanning over eight decades, the college is renowned for its value-based education, state-of-the-art infrastructure, and commitment to holistic development. Founded by visionaries like N.V. Abdussalam Moulavi, SSAC continues to empower students from marginalized communities, fostering knowledge, character, and societal impact.</p>
-    <div class="core-values">
-      <div><h3>Excellence</h3><p>Striving for academic and personal growth.</p></div>
-      <div><h3>Integrity</h3><p>Upholding ethical values in all endeavors.</p></div>
-      <div><h3>Inclusivity</h3><p>Embracing diversity and equality.</p></div>
-      <div><h3>Innovation</h3><p>Encouraging creative thinking and progress.</p></div>
-    </div>
-  </section>
-
-  <section class="academics" id="academics">
-    <canvas id="academics-canvas"></canvas>
-    <h2>Academics</h2>
-    <p>Our programs blend traditional and modern learning methodologies to foster intellectual growth.</p>
-    <div class="academics-grid">
-      <div class="academics-card">
-        <h3>Arabic Studies</h3>
-        <p>In-depth courses in Arabic language, literature, and culture.</p>
+  <div id="main-content">
+    <header>
+      <div class="logo">
+        <img src="IMG/LOGO.jpeg" alt="SSAC Logo">
+        
       </div>
-      <div class="academics-card">
-        <h3>Islamic Studies</h3>
-        <p>Comprehensive programs in Islamic theology and history.</p>
+      <div class="menu-toggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
       </div>
-      <div class="academics-card">
-        <h3>Humanities</h3>
-        <p>Interdisciplinary courses fostering critical thinking.</p>
+      <nav>
+        <a href="#hero" aria-label="Home">Home</a>
+        <a href="#about" aria-label="About">About</a>
+        <a href="#academics" aria-label="Academics">Academics</a>
+        <a href="#faculty" aria-label="Faculty">Faculty</a>
+        <a href="#gallery" aria-label="Gallery">Gallery</a>
+        <a href="#admissions" aria-label="Admissions">Admissions</a>
+        <a href="#contact" aria-label="Contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="hero">
+      <canvas id="hero-canvas"></canvas>
+      <video autoplay muted loop>
+        <source src="https://cdn.pixabay.com/video/2023/06/25/169014-838861374_tiny.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content">
+        <h1>Shaping Minds, Building Futures</h1>
+        <p>Discover a legacy of academic excellence at Sullamussalam Arabic College, Arecode, since 1944.</p>
+        <button class="cta-button">Explore Programs</button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="faculty" id="faculty">
-    <canvas id="faculty-canvas"></canvas>
-    <h2>Our Faculty</h2>
-    <div class="faculty-grid">
-      <div class="faculty-card">
-        <img src="IMG/Member_HarrisBinSalimP_Profile13.jpeg" alt="Mr. Harris Bin Salim P">
-        <h3>Mr. Harris Bin Salim P</h3>
-        <p>Principal</p>
-        <p>A warm welcome to Sullamussalam! Our college has been a cornerstone of value-based education for 80 years, nurturing students into compassionate and knowledgeable individuals.</p>
+    <section class="about" id="about">
+      <canvas id="about-canvas"></canvas>
+      <h2>About Us</h2>
+      <p>Since its inception in 1944, Sullamussalam Arabic College has been a beacon of academic excellence in Malabar. With a rich legacy spanning over eight decades, the college is renowned for its value-based education, state-of-the-art infrastructure, and commitment to holistic development. Founded by visionaries like N.V. Abdussalam Moulavi, SSAC continues to empower students from marginalized communities, fostering knowledge, character, and societal impact.</p>
+      <div class="core-values">
+        <div><h3>Excellence</h3><p>Striving for academic and personal growth.</p></div>
+        <div><h3>Integrity</h3><p>Upholding ethical values in all endeavors.</p></div>
+        <div><h3>Inclusivity</h3><p>Embracing diversity and equality.</p></div>
+        <div><h3>Innovation</h3><p>Encouraging creative thinking and progress.</p></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="gallery" id="gallery">
-    <canvas id="gallery-canvas"></canvas>
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <img src="IMG/ARABIC.jpg" alt="Campus">
-      <img src="IMG/TEST ALBUM IN ARACBIC.jpg" alt="Event">
-    </div>
-    <div class="fullscreen-overlay">
-      <img class="fullscreen-image" src="" alt="Fullscreen Image">
-      <div class="close-button" aria-label="Close Fullscreen"><i class="fas fa-times"></i></div>
-    </div>
-  </section>
-
-  <section class="admissions" id="admissions">
-    <canvas id="admissions-canvas"></canvas>
-    <h2>Admissions</h2>
-    <p>Join our vibrant community through a streamlined admission process.</p>
-    <ul>
-      <li>Complete the online application form.</li>
-      <li>Submit academic transcripts and ID documents.</li>
-      <li>Participate in an interview or entrance exam.</li>
-      <li>Receive your admission decision within 10 days.</li>
-    </ul>
-    <p>Apply now at <a href="#">https://suhaimali.github.io/-/</a>.</p>
-  </section>
-
-  <section class="contact" id="contact">
-    <canvas id="contact-canvas"></canvas>
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p>Sullamussalam Arabic College, Areekode<br>Aided by Govt. of Kerala, Affiliated to University of Calicut<br>Areekode (PO) Malappuram 673639.</p>
-      <p>Phone: <a href="tel:+914832960236">+91 483 2960236</a></p>
-      <p>Email: <a href="mailto:sullamareacode@gmail.com">sullamareacode@gmail.com</a></p>
-    </div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31306.579851822014!2d76.04816600000001!3d11.237671!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6470780a923cb%3A0x7a247b1da2d9ee42!2sSullamussalam%20Arabic%20College!5e0!3m2!1sen!2sin!4v1746537407075!5m2!1sen!2sin" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <footer>
-    <canvas id="footer-canvas"></canvas>
-    <div class="footer-content">
-      <div class="footer-section about">
-        <h3>About SSAC</h3>
-        <p>Sullamussalam Arabic College, established in 1944, is dedicated to fostering academic excellence and holistic development in Malabar, Kerala.</p>
+    <section class="academics" id="academics">
+      <canvas id="academics-canvas"></canvas>
+      <h2>Academics</h2>
+      <p>Our programs blend traditional and modern learning methodologies to foster intellectual growth.</p>
+      <div class="academics-grid">
+        <div class="academics-card">
+          <h3>Arabic Studies</h3>
+          <p>In-depth courses in Arabic language, literature, and culture.</p>
+        </div>
+        <div class="academics-card">
+          <h3>Islamic Studies</h3>
+          <p>Comprehensive programs in Islamic theology and history.</p>
+        </div>
+        <div class="academics-card">
+          <h3>Humanities</h3>
+          <p>Interdisciplinary courses fostering critical thinking.</p>
+        </div>
       </div>
-      <div class="footer-section links">
-        <h3>Quick Links</h3>
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#academics">Academics</a>
-        <a href="#contact">Contact</a>
+    </section>
+
+    <section class="faculty" id="faculty">
+      <canvas id="faculty-canvas"></canvas>
+      <h2>Our Faculty</h2>
+      <div class="faculty-grid">
+        <div class="faculty-card">
+          <img src="IMG/Member_HarrisBinSalimP_Profile13.jpeg" alt="Mr. Harris Bin Salim P">
+          <h3>Mr. Harris Bin Salim P</h3>
+          <p>Principal</p>
+          <p>A warm welcome to Sullamussalam! Our college has been a cornerstone of value-based education for 80 years, nurturing students into compassionate and knowledgeable individuals.</p>
+        </div>
       </div>
-      <div class="footer-section contact">
-        <h3>Contact Info</h3>
-        <p>Arecode, Malabar, Kerala, India</p>
+    </section>
+
+    <section class="gallery%;">
+      <canvas id="gallery-canvas"></canvas>
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="IMG/ARABIC.jpg" alt="Campus">
+        <img src="IMG/TEST ALBUM IN ARACBIC.jpg" alt="Event">
+      </div>
+      <div class="fullscreen-overlay">
+        <img class="fullscreen-image" src="" alt="Fullscreen Image">
+        <div class="close-button" aria-label="Close Fullscreen"><i class="fas fa-times"></i></div>
+      </div>
+    </section>
+
+    <section class="admissions" id="admissions">
+      <canvas id="admissions-canvas"></canvas>
+      <h2>Admissions</h2>
+      <p>Join our vibrant community through a streamlined admission process.</p>
+      <ul>
+        <li>Complete the online application form.</li>
+        <li>Submit academic transcripts and ID documents.</li>
+        <li>Participate in an interview or entrance exam.</li>
+        <li>Receive your admission decision within 10 days.</li>
+      </ul>
+      <p>Apply now at <a href="#">https://suhaimali.github.io/-/</a>.</p>
+    </section>
+
+    <section class="contact" id="contact">
+      <canvas id="contact-canvas"></canvas>
+      <h2>Contact Us</h2>
+      <div class="contact-info">
+        <p>Sullamussalam Arabic College, Areekode<br>Aided by Govt. of Kerala, Affiliated to University of Calicut<br>Areekode (PO) Malappuram 673639.</p>
         <p>Phone: <a href="tel:+914832960236">+91 483 2960236</a></p>
         <p>Email: <a href="mailto:sullamareacode@gmail.com">sullamareacode@gmail.com</a></p>
       </div>
-      <div class="footer-section social">
-        <h3>Follow Us</h3>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31306.579851822014!2d76.04816600000001!3d11.237671!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6470780a923cb%3A0x7a247b1da2d9ee42!2sSullamussalam%20Arabic%20College!5e0!3m2!1sen!2sin!4v1746537407075!5m2!1sen!2sin" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <canvas id="footer-canvas"></canvas>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>About SSAC</h3>
+          <p>Sullamussalam Arabic College, established in 1944, is dedicated to fostering academic excellence and holistic development in Malabar, Kerala.</p>
+        </div>
+        <div class="footer-section links">
+          <h3>Quick Links</h3>
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#academics">Academics</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-section contact">
+          <h3>Contact Info</h3>
+          <p>Arecode, Malabar, Kerala, India</p>
+          <p>Phone: <a href="tel:+914832960236">+91 483 2960236</a></p>
+          <p>Email: <a href="mailto:sullamareacode@gmail.com">sullamareacode@gmail.com</a></p>
+        </div>
+        <div class="footer-section social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
       </div>
+      <div class="footer-bottom">
+        <p>© 2025 Sullamussalam Arabic College. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <div class="scroll-top" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Sullamussalam Arabic College. All Rights Reserved.</p>
+
+    <div class="whatsapp-toggle" aria-label="WhatsApp Contact">
+      <i class="fab fa-whatsapp"></i>
     </div>
-  </footer>
+
+    <div class="whatsapp-menu">
+      <input type="text" placeholder="Your Name" id="whatsapp-name" required>
+      <input type="tel" placeholder="Your Phone Number" id="whatsapp-phone" required>
+      <textarea placeholder="Your Message" id="whatsapp-message" rows="4" required></textarea>
+      <button onclick="sendWhatsAppMessage()">
+        <i class="fas fa-paper-plane"></i> Send Message
+      </button>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
@@ -1076,12 +1345,49 @@
     // Header Scroll Effect
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
+      const scrollTopBtn = document.querySelector('.scroll-top');
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
+        scrollTopBtn.classList.add('visible');
       } else {
         header.classList.remove('scrolled');
+        scrollTopBtn.classList.remove('visible');
       }
     });
+
+    // Scroll to Top
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // WhatsApp Toggle Menu
+    const whatsappToggle = document.querySelector('.whatsapp-toggle');
+    const whatsappMenu = document.querySelector('.whatsapp-menu');
+    whatsappToggle.addEventListener('click', () => {
+      whatsappMenu.classList.toggle('active');
+    });
+
+    // WhatsApp Message with PDF
+    function sendWhatsAppMessage() {
+      const name = document.getElementById('whatsapp-name').value;
+      const phone = document.getElementById('whatsapp-phone').value;
+      const message = document.getElementById('whatsapp-message').value;
+      const pdfUrl = 'https://suhaimali.github.io/-/path/to/your/pdf/file.pdf'; // Replace with actual PDF URL
+      const whatsappNumber = '918891479505';
+      
+      const text = `Name: ${name}\nPhone: ${phone}\nMessage: ${message}\nPDF: ${pdfUrl}`;
+      const encodedText = encodeURIComponent(text);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+      
+      window.open(whatsappUrl, '_blank');
+      
+      // Reset form
+      document.getElementById('whatsapp-name').value = '';
+      document.getElementById('whatsapp-phone').value = '';
+      document.getElementById('whatsapp-message').value = '';
+      whatsappMenu.classList.remove('active');
+    }
 
     // Fullscreen Gallery Image
     const galleryImages = document.querySelectorAll('.gallery-grid img');
