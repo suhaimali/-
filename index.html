@@ -34,7 +34,7 @@
       justify-content: center;
       align-items: center;
       z-index: 3000;
-      animation: fadeOut 0.5s ease 4s forwards;
+      animation: fadeOut 0.5s ease 3s forwards;
     }
 
     .loader {
@@ -70,7 +70,7 @@
 
     #main-content {
       opacity: 0;
-      animation: fadeInContent 0.5s ease 4s forwards;
+      animation: fadeInContent 0.5s ease 3s forwards;
     }
 
     @keyframes fadeInContent {
@@ -284,6 +284,97 @@
       transform: translateY(-2px);
     }
 
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 42, 68, 0.85);
+      z-index: 2500;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+    }
+
+    .popup-content {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: zoomIn 0.3s ease;
+    }
+
+    .popup-content h3 {
+      color: #1a2a44;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .popup-content p {
+      color: #1a2a44;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .popup-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .popup-buttons button {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .whatsapp-share {
+      background: #25D366;
+      color: #ffffff;
+    }
+
+    .whatsapp-share:hover {
+      background: #20b354;
+      transform: translateY(-2px);
+    }
+
+    .email-share {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+
+    .email-share:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #1a2a44;
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .popup-close:hover {
+      color: #facc15;
+      transform: scale(1.2);
+    }
+
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -345,7 +436,7 @@
       max-width: 650px;
       transform: translateZ(50px);
       font-weight: 300;
-      margin-bottom: 2rem;
+      margin-bottom: 2Drv;
       line-height: 1.8;
     }
 
@@ -382,6 +473,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInSection 0.8s ease forwards;
+      animation-delay: calc(0.2s * var(--section-index));
     }
 
     .about, .academics, .faculty, .gallery, .admissions, .contact {
@@ -393,6 +488,13 @@
       overflow: hidden;
       width: 100%;
       max-width: 1200px;
+    }
+
+    @keyframes slideInSection {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .about h2, .academics h2, .faculty h2, .gallery h2, .admissions h2, .contact h2 {
@@ -471,7 +573,7 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .academics-card hovered {
+    .academics-card:hover {
       transform: translateZ(25px) scale(1.03);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
@@ -494,6 +596,7 @@
 
     .faculty-card:hover {
       transform: translateZ(25px) scale(1.03);
+   
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
@@ -983,6 +1086,11 @@
         bottom: 180px;
       }
 
+      .popup-content {
+        padding: 1.5rem;
+        width: 95%;
+      }
+
       canvas {
         width: 90%;
         height: 50%;
@@ -1080,6 +1188,23 @@
         padding: 0.6rem;
       }
 
+      .popup-content {
+        padding: 1rem;
+      }
+
+      .popup-content h3 {
+        font-size: 1.2rem;
+      }
+
+      .popup-content p {
+        font-size: 0.9rem;
+      }
+
+      .popup-buttons button {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+      }
+
       canvas {
         width: 100%;
         height: 40%;
@@ -1090,14 +1215,14 @@
 <body>
   <div id="loading-screen">
     <div class="loader"></div>
-    <div class="loading-text">Welcome to SSAC</div>
+    <div class="loading-text">Please Wait...</div>
   </div>
 
   <div id="main-content">
     <header>
       <div class="logo">
         <img src="IMG/LOGO.jpeg" alt="SSAC Logo">
-        
+        <h1>Sullamussalam Arabic College</h1>
       </div>
       <div class="menu-toggle" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
@@ -1113,7 +1238,7 @@
       </nav>
     </header>
 
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" style="--section-index: 0;">
       <canvas id="hero-canvas"></canvas>
       <video autoplay muted loop>
         <source src="https://cdn.pixabay.com/video/2023/06/25/169014-838861374_tiny.mp4" type="video/mp4">
@@ -1125,7 +1250,7 @@
       </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about" id="about" style="--section-index: 1;">
       <canvas id="about-canvas"></canvas>
       <h2>About Us</h2>
       <p>Since its inception in 1944, Sullamussalam Arabic College has been a beacon of academic excellence in Malabar. With a rich legacy spanning over eight decades, the college is renowned for its value-based education, state-of-the-art infrastructure, and commitment to holistic development. Founded by visionaries like N.V. Abdussalam Moulavi, SSAC continues to empower students from marginalized communities, fostering knowledge, character, and societal impact.</p>
@@ -1137,7 +1262,7 @@
       </div>
     </section>
 
-    <section class="academics" id="academics">
+    <section class="academics" id="academics" style="--section-index: 2;">
       <canvas id="academics-canvas"></canvas>
       <h2>Academics</h2>
       <p>Our programs blend traditional and modern learning methodologies to foster intellectual growth.</p>
@@ -1157,7 +1282,7 @@
       </div>
     </section>
 
-    <section class="faculty" id="faculty">
+    <section class="faculty" id="faculty" style="--section-index: 3;">
       <canvas id="faculty-canvas"></canvas>
       <h2>Our Faculty</h2>
       <div class="faculty-grid">
@@ -1170,7 +1295,7 @@
       </div>
     </section>
 
-    <section class="gallery%;">
+    <section class="gallery" id="gallery" style="--section-index: 4;">
       <canvas id="gallery-canvas"></canvas>
       <h2>Gallery</h2>
       <div class="gallery-grid">
@@ -1183,7 +1308,7 @@
       </div>
     </section>
 
-    <section class="admissions" id="admissions">
+    <section class="admissions" id="admissions" style="--section-index: 5;">
       <canvas id="admissions-canvas"></canvas>
       <h2>Admissions</h2>
       <p>Join our vibrant community through a streamlined admission process.</p>
@@ -1196,7 +1321,7 @@
       <p>Apply now at <a href="#">https://suhaimali.github.io/-/</a>.</p>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact" id="contact" style="--section-index: 6;">
       <canvas id="contact-canvas"></canvas>
       <h2>Contact Us</h2>
       <div class="contact-info">
@@ -1259,14 +1384,27 @@
       <input type="text" placeholder="Your Name" id="whatsapp-name" required>
       <input type="tel" placeholder="Your Phone Number" id="whatsapp-phone" required>
       <textarea placeholder="Your Message" id="whatsapp-message" rows="4" required></textarea>
-      <button onclick="sendWhatsAppMessage()">
+      <button onclick="generateAndSharePDF()">
         <i class="fas fa-paper-plane"></i> Send Message
       </button>
+    </div>
+
+    <div class="popup-overlay" id="popup-overlay">
+      <div class="popup-content">
+        <span class="popup-close" onclick="closePopup()">×</span>
+        <h3>Message Saved as PDF</h3>
+        <p>Your details have been saved as a PDF. Share it via WhatsApp or Email.</p>
+        <div class="popup-buttons">
+          <button class="whatsapp-share" onclick="shareViaWhatsApp()">Share via WhatsApp</button>
+          <button class="email-share" onclick="shareViaEmail()">Share via Email</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     // WebGL Support Check
     function isWebGLAvailable() {
@@ -1368,25 +1506,73 @@
       whatsappMenu.classList.toggle('active');
     });
 
-    // WhatsApp Message with PDF
-    function sendWhatsAppMessage() {
-      const name = document.getElementById('whatsapp-name').value;
-      const phone = document.getElementById('whatsapp-phone').value;
-      const message = document.getElementById('whatsapp-message').value;
-      const pdfUrl = 'https://suhaimali.github.io/-/path/to/your/pdf/file.pdf'; // Replace with actual PDF URL
-      const whatsappNumber = '918891479505';
-      
-      const text = `Name: ${name}\nPhone: ${phone}\nMessage: ${message}\nPDF: ${pdfUrl}`;
-      const encodedText = encodeURIComponent(text);
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-      
-      window.open(whatsappUrl, '_blank');
-      
+    // PDF Generation and Sharing
+    let pdfDataUrl = '';
+    function generateAndSharePDF() {
+      const name = document.getElementById('whatsapp-name').value.trim();
+      const phone = document.getElementById('whatsapp-phone').value.trim();
+      const message = document.getElementById('whatsapp-message').value.trim();
+
+      if (!name || !phone || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Styling the PDF
+      doc.setFontSize(20);
+      doc.setTextColor(26, 42, 68);
+      doc.text('Sullamussalam Arabic College - Contact Details', 20, 20);
+
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`Name: ${name}`, 20, 40);
+      doc.text(`Phone: ${phone}`, 20, 50);
+      doc.text(`Message:`, 20, 60);
+
+      // Handle long messages by splitting text
+      const splitMessage = doc.splitTextToSize(message, 170);
+      doc.text(splitMessage, 20, 70);
+
+      // Save PDF as Data URL
+      pdfDataUrl = doc.output('datauristring');
+
+      // Show popup
+      document.getElementById('popup-overlay').classList.add('active');
+
       // Reset form
       document.getElementById('whatsapp-name').value = '';
       document.getElementById('whatsapp-phone').value = '';
       document.getElementById('whatsapp-message').value = '';
       whatsappMenu.classList.remove('active');
+    }
+
+    function shareViaWhatsApp() {
+      const whatsappNumber = '918891479505';
+      // In production, upload the PDF to a server and get a URL
+      const pdfUrl = pdfDataUrl; // Placeholder: Replace with actual hosted URL
+      const text = `Contact Details PDF: ${pdfUrl}`;
+      const encodedText = encodeURIComponent(text);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+      window.open(whatsappUrl, '_blank');
+      closePopup();
+    }
+
+    function shareViaEmail() {
+      // In production, upload the PDF to a server and get a URL
+      const pdfUrl = pdfDataUrl; // Placeholder: Replace with actual hosted URL
+      const subject = encodeURIComponent('Sullamussalam Arabic College - Contact Details');
+      const body = encodeURIComponent(`Please find the contact details PDF here: ${pdfUrl}`);
+      const emailUrl = `mailto:?subject=${subject}&body=${body}`;
+      window.open(emailUrl, '_blank');
+      closePopup();
+    }
+
+    function closePopup() {
+      document.getElementById('popup-overlay').classList.remove('active');
+      pdfDataUrl = '';
     }
 
     // Fullscreen Gallery Image
