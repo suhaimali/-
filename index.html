@@ -335,19 +335,76 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
+      position: relative;
     }
 
     .gallery-grid img {
       width: 100%;
+      height: 200px;
+      object-fit: cover;
       border-radius: 12px;
       transform: translateZ(15px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
     }
 
     .gallery-grid img:hover {
       transform: translateZ(25px) scale(1.05);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      opacity: 0.9;
+    }
+
+    .fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 42, 68, 0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .fullscreen-overlay.active {
+      display: flex;
+    }
+
+    .fullscreen-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: zoomIn 0.3s ease;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .close-button:hover {
+      color: #facc15;
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); }
+      to { transform: scale(1); }
     }
 
     .admissions ul {
@@ -497,7 +554,8 @@
       position: relative;
       overflow: hidden;
       transform-style: preserve-3d;
-      min-height: 350px;
+      min-height: 400px;
+      animation: footerFadeIn 1s ease-out;
     }
 
     .footer-content {
@@ -508,12 +566,20 @@
       margin: 0 auto;
       gap: 2rem;
       transform: translateZ(25px);
+      opacity: 0;
+      animation: footerContentSlide 1s ease-out 0.3s forwards;
     }
 
     .footer-section {
       flex: 1;
       min-width: 200px;
       transform: translateZ(15px);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .footer-section:hover {
+      transform: translateZ(25px) translateY(-10px);
+      opacity: 0.95;
     }
 
     .footer-section h3 {
@@ -522,6 +588,23 @@
       color: #facc15;
       transform: translateZ(20px);
       font-weight: 500;
+      position: relative;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      width: 50px;
+      height: 3px;
+      background: #facc15;
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .footer-section:hover h3::after {
+      width: 80px;
     }
 
     .footer-section p, .footer-section a {
@@ -536,16 +619,18 @@
 
     .footer-section a:hover {
       color: #facc15;
-      transform: translateZ(15px);
+      transform: translateZ(15px) translateX(5px);
     }
 
     .social-icons {
       margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
     }
 
     .social-icons a {
       color: #ffffff;
-      margin: 0 0.8rem;
       font-size: 1.8rem;
       text-decoration: none;
       transition: color 0.3s ease, transform 0.3s ease;
@@ -554,7 +639,7 @@
 
     .social-icons a:hover {
       color: #facc15;
-      transform: translateZ(20px) scale(1.2);
+      transform: translateZ(20px) rotate(10deg) scale(1.2);
     }
 
     .footer-bottom {
@@ -563,6 +648,23 @@
       border-top: 1px solid rgba(255, 255, 255, 0.3);
       transform: translateZ(15px);
       font-size: 0.9rem;
+      animation: footerBottomFade 1s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+
+    @keyframes footerFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes footerContentSlide {
+      from { opacity: 0; transform: translateZ(25px) translateY(30px); }
+      to { opacity: 1; transform: translateZ(25px) translateY(0); }
+    }
+
+    @keyframes footerBottomFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     canvas {
@@ -646,6 +748,10 @@
         grid-template-columns: 1fr;
       }
 
+      .gallery-grid img {
+        height: 250px;
+      }
+
       section {
         padding: 2.5rem 1.5rem;
       }
@@ -661,6 +767,14 @@
       .footer-content {
         flex-direction: column;
         text-align: center;
+      }
+
+      .footer-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .social-icons {
+        gap: 1rem;
       }
 
       canvas {
@@ -707,8 +821,18 @@
         padding: 1.2rem;
       }
 
+      .gallery-grid img {
+        height: 200px;
+      }
+
       .contact form {
         padding: 1rem;
+      }
+
+      .close-button {
+        font-size: 1.5rem;
+        top: 10px;
+        right: 10px;
       }
 
       canvas {
@@ -722,7 +846,7 @@
   <header>
     <div class="logo">
       <img src="IMG/LOGO.jpeg" alt="SSAC Logo">
-      <h1>Sullamussalam Arabic College</h1>
+      
     </div>
     <div class="menu-toggle" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -802,6 +926,10 @@
       <img src="IMG/ARABIC.jpg" alt="Campus">
       <img src="IMG/TEST ALBUM IN ARACBIC.jpg" alt="Event">
     </div>
+    <div class="fullscreen-overlay">
+      <img class="fullscreen-image" src="" alt="Fullscreen Image">
+      <div class="close-button" aria-label="Close Fullscreen"><i class="fas fa-times"></i></div>
+    </div>
   </section>
 
   <section class="admissions" id="admissions">
@@ -821,7 +949,7 @@
     <canvas id="contact-canvas"></canvas>
     <h2>Contact Us</h2>
     <div class="contact-info">
-      <p>Arecode, Malabar, Kerala, India</p>
+      <p>Sullamussalam Arabic College, Areekode<br>Aided by Govt. of Kerala, Affiliated to University of Calicut<br>Areekode (PO) Malappuram 673639.</p>
       <p>Phone: <a href="tel:+914832960236">+91 483 2960236</a></p>
       <p>Email: <a href="mailto:sullamareacode@gmail.com">sullamareacode@gmail.com</a></p>
     </div>
@@ -883,7 +1011,6 @@
 
     // Three.js Animation Setup
     if (isWebGLAvailable()) {
-      // Helper function to create a scene
       function createScene(canvasId, geometry, color) {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -914,31 +1041,15 @@
         return { renderer, camera };
       }
 
-      // Hero Section
       const heroScene = createScene('hero-canvas', new THREE.OctahedronGeometry(16, 2), 0x3b82f6);
-
-      // About Section
       const aboutScene = createScene('about-canvas', new THREE.TorusKnotGeometry(12, 3, 100, 16), 0x1a2a44);
-
-      // Academics Section
       const academicsScene = createScene('academics-canvas', new THREE.DodecahedronGeometry(14, 1), 0xfacc15);
-
-      // Faculty Section
       const facultyScene = createScene('faculty-canvas', new THREE.IcosahedronGeometry(14, 1), 0x3b82f6);
-
-      // Gallery Section
       const galleryScene = createScene('gallery-canvas', new THREE.TetrahedronGeometry(15, 2), 0x1a2a44);
-
-      // Admissions Section
       const admissionsScene = createScene('admissions-canvas', new THREE.BoxGeometry(15, 15, 15), 0xfacc15);
-
-      // Contact Section
       const contactScene = createScene('contact-canvas', new THREE.SphereGeometry(14, 32, 16), 0x3b82f6);
-
-      // Footer Section
       const footerScene = createScene('footer-canvas', new THREE.TorusGeometry(14, 4, 16, 100), 0xfacc15);
 
-      // Window Resize Handler
       window.addEventListener('resize', () => {
         const scenes = [heroScene, aboutScene, academicsScene, facultyScene, galleryScene, admissionsScene, contactScene, footerScene];
         scenes.forEach(({ renderer, camera }) => {
@@ -969,6 +1080,29 @@
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
+      }
+    });
+
+    // Fullscreen Gallery Image
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    const fullscreenOverlay = document.querySelector('.fullscreen-overlay');
+    const fullscreenImage = document.querySelector('.fullscreen-image');
+    const closeButton = document.querySelector('.close-button');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        fullscreenImage.src = img.src;
+        fullscreenOverlay.classList.add('active');
+      });
+    });
+
+    closeButton.addEventListener('click', () => {
+      fullscreenOverlay.classList.remove('active');
+    });
+
+    fullscreenOverlay.addEventListener('click', (e) => {
+      if (e.target === fullscreenOverlay) {
+        fullscreenOverlay.classList.remove('active');
       }
     });
   </script>
