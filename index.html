@@ -19,7 +19,7 @@
       background-color: #f0f4f8;
       color: #2d3436;
       overflow-x: hidden;
-      perspective: 1000px;
+      perspective: 1200px;
     }
 
     header {
@@ -33,12 +33,13 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       transition: background 0.3s ease, transform 0.3s ease;
     }
 
     header.scrolled {
       background: rgba(44, 62, 80, 0.95);
+      transform: translateY(0);
     }
 
     .logo {
@@ -47,7 +48,7 @@
     }
 
     .logo img {
-      height: 50px;
+      height: 48px;
       margin-right: 0.8rem;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
       transition: transform 0.5s ease;
@@ -58,7 +59,7 @@
     }
 
     .logo h1 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 500;
       letter-spacing: 0.5px;
     }
@@ -128,61 +129,65 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      filter: brightness(0.6);
-      transform: translateZ(-80px);
+      filter: brightness(0.55);
+      transform: translateZ(-100px);
     }
 
     .hero-content {
-      background: rgba(44, 62, 80, 0.9);
-      padding: 2rem 3rem;
-      border-radius: 12px;
-      transform: translateZ(100px);
-      animation: float 5s ease-in-out infinite;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(12px);
-      max-width: 85%;
+      background: rgba(44, 62, 80, 0.92);
+      padding: 2.5rem 3.5rem;
+      border-radius: 16px;
+      transform: translateZ(120px);
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
+      max-width: 80%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .hero h1 {
-      font-size: 3.2rem;
-      margin-bottom: 1rem;
-      text-shadow: 3px 3px 8px rgba(0, 0න: 0, 0, 0.6);
-      transform: translateZ(50px);
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+      text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+      transform: translateZ(60px);
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
     }
 
     .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      transform: translateZ(40px);
+      font-size: 1.3rem;
+      max-width: 650px;
+      transform: translateZ(50px);
       font-weight: 300;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
     }
 
     .hero .cta-button {
-      padding: 0.8rem 2rem;
+      padding: 0.9rem 2.2rem;
       background: #f1c40f;
       color: #2c3e50;
       border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
-      transform: translateZ(30px);
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      transform: translateZ(40px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .hero .cta-button:hover {
       background: #e67e22;
-      transform: translateZ(40px) scale(1.05);
+      transform: translateZ(50px) scale(1.08);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
     @keyframes float {
-      0%, 100% { transform: translateZ(100px) translateY(0); }
-      50% { transform: translateZ(100px) translateY(-25px); }
+      0%, 100% { transform: translateZ(120px) translateY(0); }
+      50% { transform: translateZ(120px) translateY(-30px); }
     }
 
     section {
@@ -436,7 +441,7 @@
       margin-bottom: 0.6rem;
       display: block;
       transition: color 0.3s ease, transform 0.3s ease;
-      transform: translateZ(10px);
+      transforme: translateZ(10px);
     }
 
     .footer-section a:hover {
@@ -487,11 +492,11 @@
       }
 
       .logo h1 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
 
       .logo img {
-        height: 40px;
+        height: 36px;
       }
 
       .menu-toggle {
@@ -520,22 +525,22 @@
       }
 
       .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
 
       .hero p {
-        font-size: 1rem;
-        max-width: 90%;
-      }
-
-      .hero-content {
-        padding: 1.5rem 2rem;
+        font-size: 1.1rem;
         max-width: 95%;
       }
 
+      .hero-content {
+        padding: 2rem 2.5rem;
+        max-width: 90%;
+      }
+
       .hero .cta-button {
-        padding: 0.7rem 1.8rem;
-        font-size: 1rem;
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
       }
 
       .about h2 {
@@ -565,17 +570,33 @@
     }
 
     @media (max-width: 480px) {
+      header {
+        padding: 0.6rem 1rem;
+      }
+
+      .logo h1 {
+        font-size: 1rem;
+      }
+
+      .logo img {
+        height: 32px;
+      }
+
       .hero h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       .hero p {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
       }
 
       .hero .cta-button {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 0.7rem 1.8rem;
+        font-size: 1rem;
+      }
+
+      .hero-content {
+        padding: 1.5rem 2rem;
       }
 
       .about {
@@ -750,24 +771,24 @@
       const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
 
-      const geometry = new THREE.TetrahedronGeometry(15, 2);
-      const material = new THREE.MeshPhongMaterial({ color: 0x3498db, wireframe: true, shininess: 120 });
-      const tetrahedron = new THREE.Mesh(geometry, material);
-      scene.add(tetrahedron);
+      const geometry = new THREE.OctahedronGeometry(16, 2);
+      const material = new THREE.MeshPhongMaterial({ color: 0x3498db, wireframe: true, shininess: 150 });
+      const octahedron = new THREE.Mesh(geometry, material);
+      scene.add(octahedron);
 
-      const light = new THREE.PointLight(0xffffff, 1.5, 100);
-      light.position.set(30, 30, 30);
+      const light = new THREE.PointLight(0xffffff, 1.8, 100);
+      light.position.set(35, 35, 35);
       scene.add(light);
 
-      const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+      const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
       scene.add(ambientLight);
 
-      camera.position.z = 50;
+      camera.position.z = 55;
 
       function animate() {
         requestAnimationFrame(animate);
-        tetrahedron.rotation.x += 0.015;
-        tetrahedron.rotation.y += 0.015;
+        octahedron.rotation.x += 0.012;
+        octahedron.rotation.y += 0.012;
         renderer.render(scene, camera);
       }
       animate();
