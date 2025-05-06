@@ -16,14 +16,14 @@
 
     body {
       line-height: 1.6;
-      background-color: #f0f4f8;
-      color: #2d3436;
+      background-color: #f4f7fb;
+      color: #1a2a44;
       overflow-x: hidden;
       perspective: 1200px;
     }
 
     header {
-      background: linear-gradient(90deg, #2c3e50, #3498db);
+      background: linear-gradient(90deg, #1a2a44, #3b82f6);
       color: #ffffff;
       padding: 1rem 2rem;
       display: flex;
@@ -33,12 +33,12 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transition: background 0.3s ease, transform 0.3s ease;
     }
 
     header.scrolled {
-      background: rgba(44, 62, 80, 0.95);
+      background: rgba(26, 42, 68, 0.95);
       transform: translateY(0);
     }
 
@@ -48,7 +48,7 @@
     }
 
     .logo img {
-      height: 48px;
+      height: 50px;
       margin-right: 0.8rem;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
       transition: transform 0.5s ease;
@@ -59,7 +59,7 @@
     }
 
     .logo h1 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 500;
       letter-spacing: 0.5px;
     }
@@ -72,15 +72,16 @@
     nav a {
       color: #ffffff;
       text-decoration: none;
-      margin: 0 1rem;
+      margin: 0 1.2rem;
       font-weight: 400;
       position: relative;
       transition: color 0.3s ease, transform 0.3s ease;
       font-size: 0.95rem;
+      padding: 0.5rem 0;
     }
 
     nav a:hover {
-      color: #f1c40f;
+      color: #facc15;
       transform: translateY(-2px);
     }
 
@@ -89,9 +90,9 @@
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: -4px;
+      bottom: 0;
       left: 0;
-      background-color: #f1c40f;
+      background-color: #facc15;
       transition: width 0.3s ease;
     }
 
@@ -101,10 +102,15 @@
 
     .menu-toggle {
       display: none;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       cursor: pointer;
       color: #ffffff;
       z-index: 1001;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.1);
     }
 
     .hero {
@@ -118,7 +124,7 @@
       color: #ffffff;
       overflow: hidden;
       transform-style: preserve-3d;
-      background: linear-gradient(135deg, #2c3e50, #3498db);
+      background: linear-gradient(135deg, #1a2a44, #3b82f6);
     }
 
     .hero video {
@@ -129,12 +135,12 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      filter: brightness(0.55);
+      filter: brightness(0.5);
       transform: translateZ(-100px);
     }
 
     .hero-content {
-      background: rgba(44, 62, 80, 0.92);
+      background: rgba(26, 42, 68, 0.9);
       padding: 2.5rem 3.5rem;
       border-radius: 16px;
       transform: translateZ(120px);
@@ -168,8 +174,8 @@
 
     .hero .cta-button {
       padding: 0.9rem 2.2rem;
-      background: #f1c40f;
-      color: #2c3e50;
+      background: #facc15;
+      color: #1a2a44;
       border: none;
       border-radius: 10px;
       font-size: 1.2rem;
@@ -180,7 +186,7 @@
     }
 
     .hero .cta-button:hover {
-      background: #e67e22;
+      background: #eab308;
       transform: translateZ(50px) scale(1.08);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
@@ -194,25 +200,36 @@
       padding: 4rem 2rem;
       max-width: 1400px;
       margin: auto;
+      position: relative;
+      transform-style: preserve-3d;
     }
 
-    .about {
-      background: linear-gradient(135deg, #ffffff, #dfe6e9);
+    .about, .academics, .faculty, .gallery, .admissions, .contact {
+      background: linear-gradient(135deg, #ffffff, #e5e7eb);
       border-radius: 20px;
       padding: 3rem;
       margin-bottom: 2rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      position: relative;
-      transform-style: preserve-3d;
       overflow: hidden;
     }
 
-    .about h2 {
-      color: #2c3e50;
+    .about h2, .academics h2, .faculty h2, .gallery h2, .admissions h2, .contact h2 {
+      color: #1a2a44;
       margin-bottom: 1.5rem;
       font-size: 2.8rem;
       transform: translateZ(40px);
       font-weight: 500;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: #facc15;
+      position: absolute;
+      bottom: -8px;
+      left: 0;
     }
 
     .about p {
@@ -220,7 +237,7 @@
       max-width: 800px;
       margin: 0 auto 1.5rem;
       transform: translateZ(25px);
-      color: #2d3436;
+      color: #1a2a44;
       font-weight: 300;
     }
 
@@ -247,38 +264,10 @@
     }
 
     .core-values h3 {
-      color: #2c3e50;
+      color: #1a2a44;
       margin-bottom: 0.8rem;
       transform: translateZ(15px);
       font-weight: 500;
-    }
-
-    .academics, .faculty, .gallery, .admissions, .contact {
-      background: linear-gradient(135deg, #ffffff, #dfe6e9);
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      transform-style: preserve-3d;
-    }
-
-    h2 {
-      color: #2c3e50;
-      margin-bottom: 1.5rem;
-      font-size: 2.5rem;
-      position: relative;
-      transform: translateZ(20px);
-      font-weight: 500;
-    }
-
-    h2::after {
-      content: '';
-      width: 80px;
-      height: 4px;
-      background: #f1c40f;
-      position: absolute;
-      bottom: -8px;
-      left: 0;
     }
 
     .academics-grid {
@@ -329,8 +318,27 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 1rem;
-      border: 3px solid #f1c40f;
+      border: 3px solid #facc15;
       transform: translateZ(20px);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 12px;
+      transform: translateZ(15px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-grid img:hover {
+      transform: translateZ(25px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     .admissions ul {
@@ -342,18 +350,18 @@
     .admissions li {
       font-size: 1.1rem;
       margin-bottom: 0.8rem;
-      color: #2d3436;
+      color: #1a2a44;
       transform: translateZ(10px);
     }
 
     .admissions a {
-      color: #3498db;
+      color: #3b82f6;
       text-decoration: none;
       font-weight: 500;
     }
 
     .admissions a:hover {
-      color: #f1c40f;
+      color: #facc15;
     }
 
     .contact form {
@@ -367,23 +375,23 @@
 
     .contact input, .contact textarea {
       padding: 0.8rem;
-      border: 1px solid #b2bec3;
+      border: 1px solid #d1d5db;
       border-radius: 8px;
       font-size: 1rem;
       transition: border-color 0.3s ease, transform 0.3s ease;
       background: #ffffff;
-      color: #2d3436;
+      color: #1a2a44;
     }
 
     .contact input:focus, .contact textarea:focus {
-      border-color: #3498db;
+      border-color: #3b82f6;
       outline: none;
       transform: translateZ(20px);
     }
 
     .contact button {
       padding: 0.8rem;
-      background: #2c3e50;
+      background: #1a2a44;
       color: #ffffff;
       border: none;
       border-radius: 8px;
@@ -394,13 +402,13 @@
     }
 
     .contact button:hover {
-      background: #f1c40f;
-      color: #2c3e50;
+      background: #facc15;
+      color: #1a2a44;
       transform: translateZ(20px);
     }
 
     footer {
-      background: linear-gradient(135deg, #2c3e50, #3498db);
+      background: linear-gradient(135deg, #1a2a44, #3b82f6);
       color: #ffffff;
       padding: 3rem 2rem;
       text-align: center;
@@ -429,7 +437,7 @@
     .footer-section h3 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
-      color: #f1c40f;
+      color: #facc15;
       transform: translateZ(20px);
       font-weight: 500;
     }
@@ -441,11 +449,11 @@
       margin-bottom: 0.6rem;
       display: block;
       transition: color 0.3s ease, transform 0.3s ease;
-      transforme: translateZ(10px);
+      transform: translateZ(10px);
     }
 
     .footer-section a:hover {
-      color: #f1c40f;
+      color: #facc15;
       transform: translateZ(15px);
     }
 
@@ -463,7 +471,7 @@
     }
 
     .social-icons a:hover {
-      color: #f1c40f;
+      color: #facc15;
       transform: translateZ(20px) scale(1.2);
     }
 
@@ -475,14 +483,14 @@
       font-size: 0.9rem;
     }
 
-    #three-footer-canvas {
+    canvas {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2;
-      opacity: 0.3;
+      z-index: -1;
+      opacity: 0.25;
       transform: translateZ(-50px);
     }
 
@@ -492,11 +500,11 @@
       }
 
       .logo h1 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .logo img {
-        height: 36px;
+        height: 40px;
       }
 
       .menu-toggle {
@@ -507,7 +515,7 @@
         display: none;
         flex-direction: column;
         width: 100%;
-        background: rgba(44, 62, 80, 0.95);
+        background: rgba(26, 42, 68, 0.95);
         position: absolute;
         top: 100%;
         left: 0;
@@ -520,8 +528,8 @@
       }
 
       nav a {
-        margin: 0.6rem 0;
-        font-size: 1rem;
+        margin: 0.8rem 0;
+        font-size: 1.1rem;
       }
 
       .hero h1 {
@@ -530,12 +538,12 @@
 
       .hero p {
         font-size: 1.1rem;
-        max-width: 95%;
+        max-width: 90%;
       }
 
       .hero-content {
         padding: 2rem 2.5rem;
-        max-width: 90%;
+        max-width: 95%;
       }
 
       .hero .cta-button {
@@ -543,7 +551,7 @@
         font-size: 1.1rem;
       }
 
-      .about h2 {
+      .about h2, .academics h2, .faculty h2, .gallery h2, .admissions h2, .contact h2 {
         font-size: 2rem;
       }
 
@@ -551,7 +559,7 @@
         font-size: 1rem;
       }
 
-      .core-values, .academics-grid, .faculty-grid {
+      .core-values, .academics-grid, .faculty-grid, .gallery-grid {
         grid-template-columns: 1fr;
       }
 
@@ -575,7 +583,7 @@
       }
 
       .logo h1 {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
 
       .logo img {
@@ -599,7 +607,7 @@
         padding: 1.5rem 2rem;
       }
 
-      .about {
+      .about, .academics, .faculty, .gallery, .admissions, .contact {
         padding: 1.5rem;
       }
 
@@ -630,7 +638,7 @@
   </header>
 
   <section class="hero" id="hero">
-    <canvas id="three-canvas"></canvas>
+    <canvas id="hero-canvas"></canvas>
     <video autoplay muted loop>
       <source src="https://cdn.pixabay.com/video/2023/06/25/169014-838861374_tiny.mp4" type="video/mp4">
     </video>
@@ -642,7 +650,7 @@
   </section>
 
   <section class="about" id="about">
-    <canvas id="three-about-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.25;"></canvas>
+    <canvas id="about-canvas"></canvas>
     <h2>About Us</h2>
     <p>Since its inception in 1944, Sullamussalam Arabic College has been a beacon of academic excellence in Malabar. With a rich legacy spanning over eight decades, the college is renowned for its value-based education, state-of-the-art infrastructure, and commitment to holistic development. Founded by visionaries like N.V. Abdussalam Moulavi, SSAC continues to empower students from marginalized communities, fostering knowledge, character, and societal impact.</p>
     <div class="core-values">
@@ -654,6 +662,7 @@
   </section>
 
   <section class="academics" id="academics">
+    <canvas id="academics-canvas"></canvas>
     <h2>Academics</h2>
     <p>Our programs blend traditional and modern learning methodologies to foster intellectual growth.</p>
     <div class="academics-grid">
@@ -673,6 +682,7 @@
   </section>
 
   <section class="faculty" id="faculty">
+    <canvas id="faculty-canvas"></canvas>
     <h2>Our Faculty</h2>
     <div class="faculty-grid">
       <div class="faculty-card">
@@ -685,6 +695,7 @@
   </section>
 
   <section class="gallery" id="gallery">
+    <canvas id="gallery-canvas"></canvas>
     <h2>Gallery</h2>
     <div class="gallery-grid">
       <img src="IMG/ARABIC.jpg" alt="Campus">
@@ -693,6 +704,7 @@
   </section>
 
   <section class="admissions" id="admissions">
+    <canvas id="admissions-canvas"></canvas>
     <h2>Admissions</h2>
     <p>Join our vibrant community through a streamlined admission process.</p>
     <ul>
@@ -705,6 +717,7 @@
   </section>
 
   <section class="contact" id="contact">
+    <canvas id="contact-canvas"></canvas>
     <h2>Contact Us</h2>
     <p>Arecode, Malabar, Kerala, India</p>
     <p>Phone: +91 483 2960236 | Email: sullamareacode@gmail.com</p>
@@ -718,7 +731,7 @@
   </section>
 
   <footer>
-    <canvas id="three-footer-canvas"></canvas>
+    <canvas id="footer-canvas"></canvas>
     <div class="footer-content">
       <div class="footer-section about">
         <h3>About SSAC</h3>
@@ -764,98 +777,71 @@
       }
     }
 
-    // Three.js Animation for Hero
+    // Three.js Animation Setup
     if (isWebGLAvailable()) {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      // Helper function to create a scene
+      function createScene(canvasId, geometry, color) {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById(canvasId), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
-      const geometry = new THREE.OctahedronGeometry(16, 2);
-      const material = new THREE.MeshPhongMaterial({ color: 0x3498db, wireframe: true, shininess: 150 });
-      const octahedron = new THREE.Mesh(geometry, material);
-      scene.add(octahedron);
+        const material = new THREE.MeshPhongMaterial({ color, wireframe: true, shininess: 150 });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
 
-      const light = new THREE.PointLight(0xffffff, 1.8, 100);
-      light.position.set(35, 35, 35);
-      scene.add(light);
+        const light = new THREE.PointLight(0xffffff, 1.8, 100);
+        light.position.set(35, 35, 35);
+        scene.add(light);
 
-      const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
-      scene.add(ambientLight);
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+        scene.add(ambientLight);
 
-      camera.position.z = 55;
+        camera.position.z = 55;
 
-      function animate() {
-        requestAnimationFrame(animate);
-        octahedron.rotation.x += 0.012;
-        octahedron.rotation.y += 0.012;
-        renderer.render(scene, camera);
+        function animate() {
+          requestAnimationFrame(animate);
+          mesh.rotation.x += 0.012;
+          mesh.rotation.y += 0.012;
+          renderer.render(scene, camera);
+        }
+        animate();
+
+        return { renderer, camera };
       }
-      animate();
 
-      // Three.js Animation for About Section
-      const aboutScene = new THREE.Scene();
-      const aboutCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const aboutRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-about-canvas'), alpha: true });
-      aboutRenderer.setSize(window.innerWidth, window.innerHeight);
+      // Hero Section
+      const heroScene = createScene('hero-canvas', new THREE.OctahedronGeometry(16, 2), 0x3b82f6);
 
-      const aboutGeometry = new THREE.TorusKnotGeometry(12, 3, 100, 16);
-      const aboutMaterial = new THREE.MeshPhongMaterial({ color: 0x2c3e50, wireframe: true, shininess: 100 });
-      const aboutTorusKnot = new THREE.Mesh(aboutGeometry, aboutMaterial);
-      aboutScene.add(aboutTorusKnot);
+      // About Section
+      const aboutScene = createScene('about-canvas', new THREE.TorusKnotGeometry(12, 3, 100, 16), 0x1a2a44);
 
-      const aboutLight = new THREE.PointLight(0xffffff, 1.2, 100);
-      aboutLight.position.set(25, 25, 25);
-      aboutScene.add(aboutLight);
+      // Academics Section
+      const academicsScene = createScene('academics-canvas', new THREE.DodecahedronGeometry(14, 1), 0xfacc15);
 
-      aboutCamera.position.z = 35;
+      // Faculty Section
+      const facultyScene = createScene('faculty-canvas', new THREE.IcosahedronGeometry(14, 1), 0x3b82f6);
 
-      function aboutAnimate() {
-        requestAnimationFrame(aboutAnimate);
-        aboutTorusKnot.rotation.x += 0.008;
-        aboutTorusKnot.rotation.y += 0.008;
-        aboutRenderer.render(aboutScene, aboutCamera);
-      }
-      aboutAnimate();
+      // Gallery Section
+      const galleryScene = createScene('gallery-canvas', new THREE.TetrahedronGeometry(15, 2), 0x1a2a44);
 
-      // Three.js Animation for Footer
-      const footerScene = new THREE.Scene();
-      const footerCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const footerRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-footer-canvas'), alpha: true });
-      footerRenderer.setSize(window.innerWidth, window.innerHeight);
+      // Admissions Section
+      const admissionsScene = createScene('admissions-canvas', new THREE.BoxGeometry(15, 15, 15), 0xfacc15);
 
-      const footerGeometry = new THREE.IcosahedronGeometry(14, 1);
-      const footerMaterial = new THREE.MeshPhongMaterial({ color: 0xf1c40f, wireframe: true, shininess: 100 });
-      const footerIcosahedron = new THREE.Mesh(footerGeometry, footerMaterial);
-      footerScene.add(footerIcosahedron);
+      // Contact Section
+      const contactScene = createScene('contact-canvas', new THREE.SphereGeometry(14, 32, 16), 0x3b82f6);
 
-      const footerLight = new THREE.PointLight(0xffffff, 1.2, 100);
-      footerLight.position.set(25, 25, 25);
-      footerScene.add(footerLight);
-
-      footerCamera.position.z = 35;
-
-      function footerAnimate() {
-        requestAnimationFrame(footerAnimate);
-        footerIcosahedron.rotation.x += 0.009;
-        footerIcosahedron.rotation.y += 0.009;
-        footerRenderer.render(footerScene, footerCamera);
-      }
-      footerAnimate();
+      // Footer Section
+      const footerScene = createScene('footer-canvas', new THREE.TorusGeometry(14, 4, 16, 100), 0xfacc15);
 
       // Window Resize Handler
       window.addEventListener('resize', () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-
-        aboutRenderer.setSize(window.innerWidth, window.innerHeight);
-        aboutCamera.aspect = window.innerWidth / window.innerHeight;
-        aboutCamera.updateProjectionMatrix();
-
-        footerRenderer.setSize(window.innerWidth, window.innerHeight);
-        footerCamera.aspect = window.innerWidth / window.innerHeight;
-        footerCamera.updateProjectionMatrix();
+        const scenes = [heroScene, aboutScene, academicsScene, facultyScene, galleryScene, admissionsScene, contactScene, footerScene];
+        scenes.forEach(({ renderer, camera }) => {
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+        });
       });
     } else {
       console.warn('WebGL is not supported in this browser.');
